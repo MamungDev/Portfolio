@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jayvee. Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell" aria-label="Jayvee portfolio landing page">
+    <section class="hero">
+      <header class="site-header">
+        <a class="mark" href="#" aria-label="Jayvee home">Please I'm a star.</a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="menu-button" type="button" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </header>
+
+      <div class="hero-content">
+        <div class="hero-copy">
+          <h1>Jayvee.</h1>
+          <p class="kicker">3D Artist / VFX Artist</p>
+
+          <section class="software-skills" aria-label="Software skills">
+            <p class="skills-label">Software of experties</p>
+            <div class="skills-icons" role="list" aria-label="Software logos">
+              <img
+                src="assets/premier.png"
+                alt="Adobe Premiere Pro"
+                class="skills-icon"
+                loading="eager"
+                decoding="async"
+                style="--i:0"
+                role="listitem"
+              />
+              <img
+                src="assets/aftereffects.png"
+                alt="After Effects"
+                class="skills-icon"
+                loading="eager"
+                decoding="async"
+                style="--i:1"
+                role="listitem"
+              />
+              <img
+                src="assets/lightroom.png"
+                alt="Lightroom"
+                class="skills-icon"
+                loading="eager"
+                decoding="async"
+                style="--i:2"
+                role="listitem"
+              />
+              <img
+                src="assets/davinci.png"
+                alt="DaVinci Resolve"
+                class="skills-icon"
+                loading="eager"
+                decoding="async"
+                style="--i:3"
+                role="listitem"
+              />
+              <img
+                src="assets/blender.png"
+                alt="Blender"
+                class="skills-icon"
+                loading="eager"
+                decoding="async"
+                style="--i:4"
+                role="listitem"
+              />
+            </div>
+          </section>
+        </div>
+
+
+        <div class="hero-visual" aria-hidden="true">
+          <img
+            src="assets/jv.png"
+            alt=""
+            class="hero-portrait"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects" aria-label="Selected projects">
+      <article class="project-panel reveal">
+        <div class="project-media">
+          <video
+            class="project-video"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/project-01-poster.jpg"
+            aria-label="Motion graphics project preview"
+          >
+            <source src="assets/project-01.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="project-copy">
+          <p class="project-count">01 / Selected Work</p>
+          <h2>Motion Identity Film</h2>
+          <p class="project-description">
+            A concise brand motion piece built around polished transitions, clean pacing, and cinematic lighting.
+          </p>
+          <dl class="project-meta">
+            <div>
+              <dt>Software</dt>
+              <dd>After Effects, Premiere Pro, Blender</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>3D layout, animation, compositing, edit, color pass</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project-panel reveal">
+        <div class="project-media">
+          <video
+            class="project-video"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/project-02-poster.jpg"
+            aria-label="Product visualization project preview"
+          >
+            <source src="assets/project-02.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="project-copy">
+          <p class="project-count">02 / Selected Work</p>
+          <h2>Product Visualization</h2>
+          <p class="project-description">
+            A sleek product-focused sequence using controlled camera movement, material detail, and rhythmic cuts.
+          </p>
+          <dl class="project-meta">
+            <div>
+              <dt>Software</dt>
+              <dd>Blender, DaVinci Resolve, Lightroom</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>Model cleanup, lighting, render setup, color grade, final delivery</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project-panel reveal">
+        <div class="project-media">
+          <video
+            class="project-video"
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="assets/project-03-poster.jpg"
+            aria-label="VFX compositing project preview"
+          >
+            <source src="assets/project-03.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="project-copy">
+          <p class="project-count">03 / Selected Work</p>
+          <h2>VFX Composite Study</h2>
+          <p class="project-description">
+            A cinematic VFX study focused on layered atmosphere, tracked elements, and seamless shot integration.
+          </p>
+          <dl class="project-meta">
+            <div>
+              <dt>Software</dt>
+              <dd>After Effects, Blender, DaVinci Resolve</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>Tracking, compositing, particle passes, look development, final grade</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const projectVideos = document.querySelectorAll(".project-video");
+    const revealItems = document.querySelectorAll(".reveal");
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+          return;
+        }
+
+        video.pause();
+      });
+    }, { threshold: 0.48 });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.24 });
+
+    projectVideos.forEach((video) => videoObserver.observe(video));
+    revealItems.forEach((item) => revealObserver.observe(item));
+  </script>
+</body>
+</html>
