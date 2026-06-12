@@ -721,10 +721,6 @@ h1 {
     min-height: 72px;
   }
 
-  .nav-links {
-    display: none;
-  }
-
   .menu-button {
     display: grid;
   }
