@@ -11,12 +11,19 @@
     <section class="hero">
       <header class="site-header">
         <a class="mark" href="#" aria-label="Jayvee home">Please I'm a star.</a>
-        <nav class="nav-links" aria-label="Primary navigation">
+        <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
           <a href="#projects">Projects</a>
+          <a href="#demo-reel">Demo Reel</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
-        <button class="menu-button" type="button" aria-label="Open menu">
+        <button
+          class="menu-button"
+          type="button"
+          aria-label="Open menu"
+          aria-controls="primary-navigation"
+          aria-expanded="false"
+        >
           <span></span>
           <span></span>
           <span></span>
@@ -95,73 +102,73 @@
 
     <section class="projects" id="projects" aria-label="Selected projects">
       <article class="project-panel reveal">
-        <div class="project-media">
-          <video
-            class="project-video"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            poster="assets/project-01-poster.jpg"
-            aria-label="Motion graphics project preview"
-          >
-            <source src="assets/project-01.mp4" type="video/mp4">
-          </video>
+        <div class="project-media ratio-16-9">
+          <iframe
+            class="project-video project-yt"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/oWBDoTQBFcQ?autoplay=1&mute=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </div>
         <div class="project-copy">
-          <p class="project-count">01 / Selected Work</p>
-          <h2>Motion Identity Film</h2>
+          <p class="project-count">I / VFX</p>
+          <h2>VFX CG Integration</h2>
           <p class="project-description">
             A concise brand motion piece built around polished transitions, clean pacing, and cinematic lighting.
           </p>
           <dl class="project-meta">
             <div>
               <dt>Software</dt>
-              <dd>After Effects, Premiere Pro, Blender</dd>
+              <dd> Blender, Premiere Pro</dd>
             </div>
             <div>
               <dt>Role</dt>
-              <dd>3D layout, animation, compositing, edit, color pass</dd>
+              <dd>Camera Tracking, Animation, Compositing, Model cleanup, Texuring</dd>
             </div>
           </dl>
         </div>
       </article>
 
       <article class="project-panel reveal">
-        <div class="project-media">
-          <video
-            class="project-video"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            poster="assets/project-02-poster.jpg"
-            aria-label="Product visualization project preview"
-          >
-            <source src="assets/project-02.mp4" type="video/mp4">
-          </video>
+        <div class="project-media ratio-16-9">
+          <iframe
+            class="project-video project-yt"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Pq-m0u8LWsc?autoplay=1&mute=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </div>
         <div class="project-copy">
-          <p class="project-count">02 / Selected Work</p>
-          <h2>Product Visualization</h2>
+          <p class="project-count">II / Cinematic</p>
+          <h2>Cinematic Render</h2>
           <p class="project-description">
-            A sleek product-focused sequence using controlled camera movement, material detail, and rhythmic cuts.
+            Enviroment and lighting look development for a cinematic render, focused on material, environment detail, and lighting.
           </p>
           <dl class="project-meta">
             <div>
               <dt>Software</dt>
-              <dd>Blender, DaVinci Resolve, Lightroom</dd>
+              <dd>Blender, DaVinci Resolve</dd>
             </div>
             <div>
               <dt>Role</dt>
-              <dd>Model cleanup, lighting, render setup, color grade, final delivery</dd>
+              <dd>Model cleanup, lighting, Render setup, Color grade, Environment and theme layout</dd>
             </div>
           </dl>
         </div>
       </article>
 
       <article class="project-panel reveal">
-        <div class="project-media">
+        <div class="project-media ratio-16-9">
           <video
             class="project-video"
             muted
@@ -175,29 +182,115 @@
           </video>
         </div>
         <div class="project-copy">
-          <p class="project-count">03 / Selected Work</p>
-          <h2>VFX Composite Study</h2>
+          <p class="project-count">III / VFX </p>
+          <h2>School Project Commercial</h2>
           <p class="project-description">
-            A cinematic VFX study focused on layered atmosphere, tracked elements, and seamless shot integration.
+           Actual brand school project commercial, Intgrated with CG effects and workflow pipeline.
           </p>
           <dl class="project-meta">
             <div>
               <dt>Software</dt>
-              <dd>After Effects, Blender, DaVinci Resolve</dd>
+              <dd>Premier Pro, Blender, DaVinci Resolve</dd>
             </div>
             <div>
               <dt>Role</dt>
-              <dd>Tracking, compositing, particle passes, look development, final grade</dd>
+              <dd>Modeler, Compositing, Particle Effects, Animation</dd>
             </div>
           </dl>
         </div>
       </article>
     </section>
+
+    <section class="projects" id="demo-reel" aria-label="Demo reel">
+      <article class="project-panel reveal">
+        <div class="project-media ratio-16-9">
+          <iframe
+            class="project-video project-yt"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/Q26v1FwbPok?si=l4_oQNTAvNN2spZR&autoplay=1&mute=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="project-copy">
+          <p class="project-count">IV / Demo Reel</p>
+          <h2>Demo Reel</h2>
+          <p class="project-description">
+            A compiled version of all of my works during my studies and journey of this career path.
+          </p>
+          <dl class="project-meta">
+            <div>
+              <dt>Software</dt>
+              <dd>After Effects, Premiere Pro, Blender, Davinci Resolve</dd>
+            </div>
+            <div>
+              <dt>Role</dt>
+              <dd>Generalist</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+    </section>
+
+    <section class="about" id="about" aria-label="About">
+      <div class="about-panel reveal">
+        <div class="about-copy">
+          <p class="about-label">About</p>
+          <h2>Making images feel alive.</h2>
+          <p class="about-description">
+            I’m Jayvee—an artist focused on 3D and VFX craft. I design clean motion, build realistic lighting, and polish composites
+            so every frame feels intentional—from idea to final delivery.
+          </p>
+
+          <dl class="about-meta" aria-label="About details">
+            <div>
+              <dt>Focus</dt>
+              <dd>3D layout, Animation, VFX Camera Tracking and CG Integration</dd>
+            </div>
+            <div>
+              <dt>Strengths</dt>
+              <dd>cinematic pacing, material detail, look development</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
   </main>
 
+
   <script>
-    const projectVideos = document.querySelectorAll(".project-video");
+    const projectVideos = document.querySelectorAll(
+      ".project-video"
+    );
+
+    // Only attempt play/pause for actual <video> elements (not <iframe> YouTube embeds)
+    const videoEls = document.querySelectorAll(".project-video video");
+
     const revealItems = document.querySelectorAll(".reveal");
+
+    const menuButton = document.querySelector(".menu-button");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (menuButton && navLinks) {
+      menuButton.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("is-open");
+
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("is-open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open menu");
+        });
+      });
+    }
 
     const videoObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -223,7 +316,8 @@
       });
     }, { threshold: 0.24 });
 
-    projectVideos.forEach((video) => videoObserver.observe(video));
+    videoEls.forEach((video) => videoObserver.observe(video));
+
     revealItems.forEach((item) => revealObserver.observe(item));
   </script>
 </body>
