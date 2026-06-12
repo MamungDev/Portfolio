@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jayvee. Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <main class="page-shell" aria-label="Jayvee portfolio landing page">
@@ -119,7 +119,7 @@
           <p class="project-count">I / VFX</p>
           <h2>VFX CG Integration</h2>
           <p class="project-description">
-            A concise brand motion piece built around polished transitions, clean pacing, and cinematic lighting.
+            Intergrating CG elements into a live action footage, with focus on camera tracking, lighting, and compositing to create a seamless blend between the real and the virtual.
           </p>
           <dl class="project-meta">
             <div>
@@ -169,23 +169,23 @@
 
       <article class="project-panel reveal">
         <div class="project-media ratio-16-9">
-          <video
-            class="project-video"
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            poster="assets/project-03-poster.jpg"
-            aria-label="VFX compositing project preview"
-          >
-            <source src="assets/project-03.mp4" type="video/mp4">
-          </video>
+          <iframe
+            class="project-video project-yt"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/3xe6wOM6ZeY?autoplay=1&mute=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
         </div>
         <div class="project-copy">
           <p class="project-count">III / VFX </p>
-          <h2>School Project Commercial</h2>
+          <h2>Academic Project Commercial</h2>
           <p class="project-description">
-           Actual brand school project commercial, Intgrated with CG effects and workflow pipeline.
+           An actual soap brand project commercial, Intgrated with CG effects and workflow pipeline.
           </p>
           <dl class="project-meta">
             <div>
@@ -199,10 +199,7 @@
           </dl>
         </div>
       </article>
-    </section>
-
-    <section class="projects" id="demo-reel" aria-label="Demo reel">
-      <article class="project-panel reveal">
+      <article class="project-panel reveal" id="demo-reel">
         <div class="project-media ratio-16-9">
           <iframe
             class="project-video project-yt"
@@ -237,13 +234,13 @@
     </section>
 
     <section class="about" id="about" aria-label="About">
-      <div class="about-panel reveal">
+      <article class="about-panel reveal">
         <div class="about-copy">
           <p class="about-label">About</p>
-          <h2>Making images feel alive.</h2>
+          <h2>Crafting Endless Possibilities.</h2>
           <p class="about-description">
-            I’m Jayvee—an artist focused on 3D and VFX craft. I design clean motion, build realistic lighting, and polish composites
-            so every frame feels intentional—from idea to final delivery.
+            I’m Jayvee, an artist focused on 3D and VFX craft. I design clean motion, build realistic lighting, and polish composites
+            so every frame feels intentional from idea to final delivery.
           </p>
 
           <dl class="about-meta" aria-label="About details">
@@ -253,11 +250,68 @@
             </div>
             <div>
               <dt>Strengths</dt>
-              <dd>cinematic pacing, material detail, look development</dd>
+              <dd>Technical understanding for softwares production pipeline, Cinematic pacing, Material and CG detail.</dd>
             </div>
           </dl>
         </div>
-      </div>
+      </article>
+    </section>
+
+    <section class="contact" id="contact" aria-label="Contact">
+      <article class="contact-panel reveal">
+        <div class="contact-copy">
+          <p class="contact-label">Contact</p>
+          <h2>I'm ready for the next frame.</h2>
+          <p class="contact-description">
+            Reach me out for collaborations, freelance work, or general inquiries. I’m available for VFX, 3D, and motion design projects.
+          </p>
+
+          <div class="contact-methods" aria-label="Contact methods">
+            <a
+              class="contact-card"
+              href="https://web.facebook.com/allowmetoreceiveamint"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="contact-card-icon"
+                src="assets/fb.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="contact-card-text">Facebook</span>
+            </a>
+
+            <a
+              class="contact-card"
+              href="https://www.instagram.com/allowmetoreceiveamint"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="contact-card-icon"
+                src="assets/insta.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="contact-card-text">Instagram</span>
+            </a>
+
+            <a class="contact-card" href="mailto:Regalariojayveesevilla@gmail.com">
+              <img
+                class="contact-card-icon"
+                src="assets/email.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="contact-card-text">Regalariojayveesevilla@gmail.com</span>
+            </a>
+          </div>
+        </div>
+      </article>
     </section>
   </main>
 
