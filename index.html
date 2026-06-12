@@ -32,7 +32,7 @@
   <main class="page-shell" aria-label="Jayvee portfolio landing page">
     <section class="hero">
       <header class="site-header">
-        <a class="mark" href="#" aria-label="Jayvee home">Hi pu.</a>
+        <a class="mark" href="#" aria-label="Jayvee home" id="greeting-link">Good day.</a>
         <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
           <a href="#projects">Projects</a>
           <a href="#demo-reel">Demo Reel</a>
@@ -395,6 +395,28 @@
     videoEls.forEach((video) => videoObserver.observe(video));
 
     revealItems.forEach((item) => revealObserver.observe(item));
+
+    // Time‑based greeting in Manila timezone
+    (function updateGreeting() {
+      const now = new Date();
+      const hour = now.toLocaleString("en-US", {
+        hour: "numeric",
+        hour12: false,
+        timeZone: "Asia/Manila"
+      });
+      const hourNum = parseInt(hour, 10);
+
+      let greeting;
+      if (hourNum >= 0 && hourNum < 12) {
+        greeting = "Good day.";
+      } else if (hourNum >= 12 && hourNum < 18) {
+        greeting = "Good noon.";
+      } else {
+        greeting = "Good eve.";
+      }
+
+      document.getElementById("greeting-link").textContent = greeting;
+    })();
   </script>
 </body>
 </html>
