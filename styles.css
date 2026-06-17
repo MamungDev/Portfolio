@@ -668,38 +668,73 @@ h1 {
   }
 
   /* Mobile menu toggle */
-  .nav-links {
-    position: absolute;
-    top: 72px;
-    left: 14px;
-    right: 14px;
-    padding: 16px;
-    background: var(--surface);
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 10px;
-    box-shadow: 0 24px 72px rgba(27, 27, 27, 0.18);
-    display: grid;
-    gap: 14px;
-    z-index: 20;
-
-    /* hidden by default on mobile */
+  /* Mobile sliding panel */
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.36);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    pointer-events: none;
-    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+    transition: opacity 200ms ease, visibility 200ms ease;
+    z-index: 32;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(340px, 84%);
+    padding: 88px 20px 28px;
+    background: var(--surface);
+    border-left: 1px solid var(--line);
+    box-shadow: -24px 0 72px rgba(27, 27, 27, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    z-index: 40;
+
+    /* hidden by default off-canvas */
+    transform: translateX(100%);
+    transition: transform 320ms cubic-bezier(.2,.9,.2,1);
+    will-change: transform;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav-links.is-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
+    transform: translateX(0);
   }
 
   .nav-links a {
+    display: block;
+    width: 100%;
     color: var(--primary);
-    font-size: 12px;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    text-align: center;
+    padding: 14px 8px;
+    border-bottom: 1px solid rgba(27, 27, 27, 0.06);
+    transition: background 120ms ease, transform 120ms ease;
+  }
+
+  .nav-links a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus {
+    background: rgba(27, 27, 27, 0.03);
+    transform: translateY(-1px);
   }
 
   .hero {

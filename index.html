@@ -53,6 +53,8 @@
         </button>
       </header>
 
+      <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
       <div class="hero-content">
         <div class="hero-copy">
           <h1>Jayvee.</h1>
@@ -334,6 +336,7 @@
 
     const menuButton = document.querySelector(".menu-button");
     const navLinks = document.querySelector(".nav-links");
+    const navOverlay = document.getElementById("nav-overlay");
 
     if (menuButton && navLinks) {
       menuButton.addEventListener("click", () => {
@@ -341,6 +344,8 @@
 
         menuButton.setAttribute("aria-expanded", String(isOpen));
         menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+
+        if (navOverlay) navOverlay.classList.toggle("is-visible", isOpen);
       });
 
       navLinks.querySelectorAll("a").forEach((link) => {
@@ -348,8 +353,18 @@
           navLinks.classList.remove("is-open");
           menuButton.setAttribute("aria-expanded", "false");
           menuButton.setAttribute("aria-label", "Open menu");
+          if (navOverlay) navOverlay.classList.remove("is-visible");
         });
       });
+
+      if (navOverlay) {
+        navOverlay.addEventListener("click", () => {
+          navLinks.classList.remove("is-open");
+          navOverlay.classList.remove("is-visible");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open menu");
+        });
+      }
     }
 
     const videoObserver = new IntersectionObserver((entries) => {
