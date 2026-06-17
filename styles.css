@@ -4,6 +4,8 @@
   --secondary: #828282;
   --surface: #EAEAEA;
   --line: rgba(27, 27, 27, 0.12);
+  --divider-width: 1.5px;
+  --divider-color: rgba(27, 27, 27, 0.14);
   --mobile-skills-offset: 20px;
   --mobile-visual-bg-top: 35%;
   --mobile-visual-bg-width: 92%;
@@ -109,12 +111,54 @@ a.mark,
   color: var(--primary);
   background: transparent;
   cursor: pointer;
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1);
+  transform: rotate(0deg);
+  transform-origin: center center;
 }
 
 .menu-button span {
   width: 22px;
   height: 2px;
   background: currentColor;
+}
+
+.menu-button.is-open {
+  transform: rotate(90deg);
+}
+
+/* style for close button (hamburger rotated to vertical) */
+.nav-close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: auto;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-6px) rotate(90deg);
+  transition: opacity 220ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);
+}
+
+.nav-close span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.nav-close.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(90deg);
 }
 
 .hero-content {
@@ -690,32 +734,93 @@ h1 {
     top: 0;
     right: 0;
     height: 100vh;
-    width: min(340px, 84%);
-    padding: 88px 20px 28px;
-    background: var(--surface);
-    border-left: 1px solid var(--line);
-    box-shadow: -24px 0 72px rgba(27, 27, 27, 0.18);
+    width: min(420px, 85%);
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    justify-content: center;
     align-items: center;
+    justify-content: flex-end;
     z-index: 40;
+    padding: 12px;
 
-    /* hidden by default off-canvas */
+    /* off-canvas */
     transform: translateX(100%);
-    transition: transform 320ms cubic-bezier(.2,.9,.2,1);
-    will-change: transform;
-    -webkit-overflow-scrolling: touch;
+    transition: transform 360ms cubic-bezier(.2,.9,.2,1);
   }
 
   .nav-links.is-open {
     transform: translateX(0);
   }
 
-  .nav-links a {
-    display: block;
+  .nav-links .nav-frame {
     width: 100%;
+    max-width: 420px;
+    margin: 8px;
+    height: calc(100% - 16px);
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 8px;
+    /* leave room for the in-drawer hamburger button without over-lifting content */
+    padding-top: clamp(32px, 6vw, 44px);
+    padding-right: clamp(20px, 4.5vw, 36px);
+    padding-left: clamp(20px, 4.5vw, 36px);
+    padding-bottom: clamp(20px, 4.5vw, 36px);
+    box-shadow: inset 0 6px 18px rgba(27,27,27,0.04), 0 6px 20px rgba(27,27,27,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 18px;
+    position: relative;
+  }
+
+  .nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: var(--divider-width) solid var(--divider-color);
+  }
+
+  .nav-title {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .nav-close {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: auto;
+    border: 0;
+    background: transparent;
+    color: var(--primary);
+    font-size: 20px;
+    line-height: 1;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+
+  .nav-close:focus-visible {
+    outline: 2px solid rgba(27,27,27,0.18);
+    outline-offset: 2px;
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin-top: 8px;
+  }
+
+  .nav-items a {
+    display: block;
     color: var(--primary);
     font-size: 18px;
     font-weight: 900;
@@ -723,17 +828,19 @@ h1 {
     letter-spacing: 0.6px;
     text-align: center;
     padding: 14px 8px;
-    border-bottom: 1px solid rgba(27, 27, 27, 0.06);
-    transition: background 120ms ease, transform 120ms ease;
+    border-radius: 6px;
+    border-bottom: var(--divider-width) solid var(--divider-color);
+    background: transparent;
+    transition: background 160ms ease, transform 160ms ease;
   }
 
-  .nav-links a:last-child {
+  .nav-items a:last-child {
     border-bottom: none;
   }
 
-  .nav-links a:hover,
-  .nav-links a:focus {
-    background: rgba(27, 27, 27, 0.03);
+  .nav-items a:hover,
+  .nav-items a:focus {
+    background: rgba(27,27,27,0.03);
     transform: translateY(-1px);
   }
 

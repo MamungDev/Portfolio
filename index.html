@@ -35,10 +35,23 @@
       <header class="site-header">
         <a class="mark" href="#" aria-label="Jayvee home" id="greeting-link">Good day.</a>
         <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
-          <a href="#projects">Projects</a>
-          <a href="#Showcase-reel">Showcase  Reel</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+          <div class="nav-frame">
+            <div class="nav-header">
+              <h3 class="nav-title">MENU</h3>
+              <button class="nav-close" type="button" aria-label="Close menu">
+                <span></span>
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+
+            <div class="nav-items" role="menu">
+              <a role="menuitem" href="#projects">Projects</a>
+              <a role="menuitem" href="#Showcase-reel">Showcase Reel</a>
+              <a role="menuitem" href="#about">About</a>
+              <a role="menuitem" href="#contact">Contact</a>
+            </div>
+          </div>
         </nav>
         <button
           class="menu-button"
@@ -337,6 +350,7 @@
     const menuButton = document.querySelector(".menu-button");
     const navLinks = document.querySelector(".nav-links");
     const navOverlay = document.getElementById("nav-overlay");
+    const navClose = document.querySelector(".nav-close");
 
     if (menuButton && navLinks) {
       menuButton.addEventListener("click", () => {
@@ -344,8 +358,10 @@
 
         menuButton.setAttribute("aria-expanded", String(isOpen));
         menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        menuButton.classList.toggle("is-open", isOpen);
 
         if (navOverlay) navOverlay.classList.toggle("is-visible", isOpen);
+        if (navClose) navClose.classList.toggle("is-visible", isOpen);
       });
 
       navLinks.querySelectorAll("a").forEach((link) => {
@@ -353,7 +369,9 @@
           navLinks.classList.remove("is-open");
           menuButton.setAttribute("aria-expanded", "false");
           menuButton.setAttribute("aria-label", "Open menu");
+          menuButton.classList.remove("is-open");
           if (navOverlay) navOverlay.classList.remove("is-visible");
+          if (navClose) navClose.classList.remove("is-visible");
         });
       });
 
@@ -363,6 +381,19 @@
           navOverlay.classList.remove("is-visible");
           menuButton.setAttribute("aria-expanded", "false");
           menuButton.setAttribute("aria-label", "Open menu");
+          menuButton.classList.remove("is-open");
+          if (navClose) navClose.classList.remove("is-visible");
+        });
+      }
+
+      if (navClose) {
+        navClose.addEventListener("click", () => {
+          navLinks.classList.remove("is-open");
+          if (navOverlay) navOverlay.classList.remove("is-visible");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open menu");
+          menuButton.classList.remove("is-open");
+          navClose.classList.remove("is-visible");
         });
       }
     }
