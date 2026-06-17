@@ -320,16 +320,27 @@
               <span class="contact-card-text">Instagram</span>
             </a>
 
-            <a class="contact-card" href="mailto:Regalariojayveesevilla@gmail.com">
-              <img
-                class="contact-card-icon"
-                src="assets/email.png"
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
-              <span class="contact-card-text">Regalariojayveesevilla@gmail.com</span>
-            </a>
+            <div class="email-row">
+              <a class="contact-card email-card" href="mailto:inqurery@gmail.com">
+                <img
+                  class="contact-card-icon"
+                  src="assets/email.png"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="contact-card-text">inqurery@gmail.com</span>
+              </a>
+
+              <div class="email-copy-wrapper">
+                <button class="copy-email" type="button" aria-label="Copy email">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 1H4a2 2 0 0 0-2 2v12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="8" y="5" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </article>
@@ -446,6 +457,42 @@
       }
 
       document.getElementById("greeting-link").textContent = greeting;
+    })();
+  </script>
+  <!-- Copy toast + copy script -->
+  <div id="copy-toast" role="status" aria-live="polite">Email copied</div>
+
+  <script>
+    (function () {
+      const copyBtn = document.querySelector('.copy-email');
+      const emailCard = document.querySelector('.email-card');
+      const toast = document.getElementById('copy-toast');
+      if (!copyBtn || !emailCard || !toast) return;
+
+      const email = (emailCard.getAttribute('href') || '').replace(/^mailto:/i, '') || emailCard.textContent.trim();
+
+      function showToast() {
+        toast.classList.add('visible');
+        clearTimeout(toast._hideTimeout);
+        toast._hideTimeout = setTimeout(() => toast.classList.remove('visible'), 1500);
+      }
+
+      copyBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        try {
+          await navigator.clipboard.writeText(email);
+          showToast();
+        } catch (err) {
+          const el = document.createElement('textarea');
+          el.value = email;
+          el.style.position = 'fixed';
+          el.style.left = '-9999px';
+          document.body.appendChild(el);
+          el.select();
+          try { document.execCommand('copy'); showToast(); } catch (e) {}
+          document.body.removeChild(el);
+        }
+      });
     })();
   </script>
 </body>

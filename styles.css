@@ -623,7 +623,9 @@ h1 {
   font-weight: 800;
   font-size: 15px;
   letter-spacing: 0;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 820px) {
@@ -641,6 +643,98 @@ h1 {
   .contact-copy {
     padding: 24px;
   }
+}
+
+
+/* Email card copy button (minimal, centered under email) */
+.email-card {
+  /* keep contact-card defaults */
+}
+
+/* email-link selector removed — `.email-card` is an anchor with `contact-card` so it inherits those styles */
+
+.email-copy-wrapper {
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+
+.copy-email {
+  appearance: none;
+  border: 1px solid rgba(27,27,27,0.12);
+  background: rgba(27,27,27,0.04);
+  color: var(--primary);
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  box-shadow: 0 6px 18px rgba(27,27,27,0.04);
+}
+
+.copy-email svg { display: block; color: var(--primary); }
+
+.copy-email:focus { outline: 2px solid rgba(27,27,27,0.14); outline-offset: 2px; }
+
+/* Toast */
+#copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(27,27,27,0.92);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+  z-index: 120;
+}
+
+#copy-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Position the copy button to the right of the email card on desktop */
+.email-row {
+  position: relative;
+  width: 100%;
+}
+
+.email-row .contact-card {
+  width: 100%;
+}
+
+.email-row .email-copy-wrapper {
+  position: absolute;
+  right: -44px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Make copy button smaller and sit close to card on medium screens */
+@media (max-width: 1100px) {
+  .email-row .email-copy-wrapper { right: -36px; }
+  .copy-email { width: 36px; height: 36px; }
+}
+
+/* On mobile, revert to stacked centered layout beneath the card */
+@media (max-width: 820px) {
+  .email-row { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .email-row .email-copy-wrapper { position: static; transform: none; right: auto; }
+  /* Hide the floating copy button on mobile to keep UI clean */
+  .email-row .email-copy-wrapper { display: none; }
+  .copy-email { width: 40px; height: 40px; }
+}
+
+/* Slightly reduce contact text size on very small screens to avoid wrapping awkwardly */
+@media (max-width: 420px) {
+  .contact-card-text { font-size: 14px; }
 }
 
 .project-meta dt {
@@ -1035,9 +1129,18 @@ h1 {
 }
 
 @media (min-width: 821px) {
-  /* Hide the mobile framed panel on wider screens and show nav items inline */
+  /* Convert framed mobile panel into neutral inline container on wide screens */
   .nav-frame {
-    display: none !important;
+    display: flex !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    height: auto !important;
+    margin: 0 !important;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   .nav-links {
@@ -1051,6 +1154,7 @@ h1 {
     flex-direction: row;
     gap: clamp(24px, 5vw, 72px);
     margin: 0;
+    align-items: center;
   }
 
   .nav-items a {
@@ -1069,6 +1173,11 @@ h1 {
 
   .nav-close,
   .nav-overlay {
+    display: none !important;
+  }
+
+  /* Hide the nav title label on desktop/web view */
+  .nav-title {
     display: none !important;
   }
 }
