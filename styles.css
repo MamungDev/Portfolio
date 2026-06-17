@@ -1034,6 +1034,45 @@ h1 {
   }
 }
 
+@media (min-width: 821px) {
+  /* Hide the mobile framed panel on wider screens and show nav items inline */
+  .nav-frame {
+    display: none !important;
+  }
+
+  .nav-links {
+    display: flex !important;
+    align-items: center;
+    gap: clamp(24px, 5vw, 72px);
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(24px, 5vw, 72px);
+    margin: 0;
+  }
+
+  .nav-items a {
+    padding: 0;
+    border-bottom: none;
+    color: var(--secondary);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+
+  .nav-items a:hover {
+    color: var(--primary);
+  }
+
+  .nav-close,
+  .nav-overlay {
+    display: none !important;
+  }
+}
+
 @media (max-width: 820px) and (max-height: 700px) {
   .hero {
     min-height: auto;
