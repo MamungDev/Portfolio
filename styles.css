@@ -4,6 +4,8 @@
   --secondary: #828282;
   --surface: #EAEAEA;
   --line: rgba(27, 27, 27, 0.12);
+  --divider-width: 1.5px;
+  --divider-color: rgba(27, 27, 27, 0.14);
   --mobile-skills-offset: 20px;
   --mobile-visual-bg-top: 35%;
   --mobile-visual-bg-width: 92%;
@@ -109,12 +111,54 @@ a.mark,
   color: var(--primary);
   background: transparent;
   cursor: pointer;
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1);
+  transform: rotate(0deg);
+  transform-origin: center center;
 }
 
 .menu-button span {
   width: 22px;
   height: 2px;
   background: currentColor;
+}
+
+.menu-button.is-open {
+  transform: rotate(90deg);
+}
+
+/* style for close button (hamburger rotated to vertical) */
+.nav-close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: auto;
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-6px) rotate(90deg);
+  transition: opacity 220ms ease, transform 320ms cubic-bezier(.2,.9,.2,1);
+}
+
+.nav-close span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.nav-close.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(90deg);
 }
 
 .hero-content {
@@ -344,6 +388,95 @@ h1 {
   aspect-ratio: var(--aspect-ratio, 16 / 9);
   background: #1B1B1B;
   overflow: hidden;
+}
+
+/* Archviz carousel styles */
+.archviz-panel .carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.archviz-panel .carousel-slides {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  /* Allow horizontal swipe handling: prevent the browser from intercepting horizontal gestures */
+  touch-action: pan-y;
+}
+
+.archviz-panel .slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 420ms cubic-bezier(.2,.9,.2,1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.archviz-panel .slide.is-active {
+  opacity: 1;
+  position: relative;
+}
+
+.archviz-panel .slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.archviz-panel .carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--background);
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.archviz-panel .carousel-prev { left: 14px; }
+.archviz-panel .carousel-next { right: 14px; }
+
+.archviz-panel .carousel-btn svg { color: var(--surface); stroke: rgba(27,27,27,0.9); }
+
+.archviz-panel .carousel-btn:focus-visible {
+  outline: 2px solid rgba(27,27,27,0.14);
+  outline-offset: 2px;
+}
+
+.archviz-panel .slide-counter {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  color: rgba(255,255,255,0.86);
+  font-weight: 800;
+  font-size: 12px;
+  background: rgba(0,0,0,0.18);
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Subtle bottom-left alternative for very wide images */
+.archviz-panel .slide-counter.left { left: 14px; right: auto; }
+
+/* Responsive: stack on mobile (carousel above details) */
+@media (max-width: 820px) {
+  .archviz-panel { grid-template-columns: 1fr; }
+  .archviz-panel .carousel-btn { width: 40px; height: 40px; }
+  .archviz-panel .slide-counter { right: 12px; bottom: 10px; }
 }
 
 .project-media.ratio-16-9 { --aspect-ratio: 16 / 9; }
@@ -579,7 +712,9 @@ h1 {
   font-weight: 800;
   font-size: 15px;
   letter-spacing: 0;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width: 820px) {
@@ -597,6 +732,98 @@ h1 {
   .contact-copy {
     padding: 24px;
   }
+}
+
+
+/* Email card copy button (minimal, centered under email) */
+.email-card {
+  /* keep contact-card defaults */
+}
+
+/* email-link selector removed — `.email-card` is an anchor with `contact-card` so it inherits those styles */
+
+.email-copy-wrapper {
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+
+.copy-email {
+  appearance: none;
+  border: 1px solid rgba(27,27,27,0.12);
+  background: rgba(27,27,27,0.04);
+  color: var(--primary);
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  box-shadow: 0 6px 18px rgba(27,27,27,0.04);
+}
+
+.copy-email svg { display: block; color: var(--primary); }
+
+.copy-email:focus { outline: 2px solid rgba(27,27,27,0.14); outline-offset: 2px; }
+
+/* Toast */
+#copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(27,27,27,0.92);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+  z-index: 120;
+}
+
+#copy-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Position the copy button to the right of the email card on desktop */
+.email-row {
+  position: relative;
+  width: 100%;
+}
+
+.email-row .contact-card {
+  width: 100%;
+}
+
+.email-row .email-copy-wrapper {
+  position: absolute;
+  right: -44px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Make copy button smaller and sit close to card on medium screens */
+@media (max-width: 1100px) {
+  .email-row .email-copy-wrapper { right: -36px; }
+  .copy-email { width: 36px; height: 36px; }
+}
+
+/* On mobile, revert to stacked centered layout beneath the card */
+@media (max-width: 820px) {
+  .email-row { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .email-row .email-copy-wrapper { position: static; transform: none; right: auto; }
+  /* Hide the floating copy button on mobile to keep UI clean */
+  .email-row .email-copy-wrapper { display: none; }
+  .copy-email { width: 40px; height: 40px; }
+}
+
+/* Slightly reduce contact text size on very small screens to avoid wrapping awkwardly */
+@media (max-width: 420px) {
+  .contact-card-text { font-size: 14px; }
 }
 
 .project-meta dt {
@@ -668,38 +895,136 @@ h1 {
   }
 
   /* Mobile menu toggle */
-  .nav-links {
-    position: absolute;
-    top: 72px;
-    left: 14px;
-    right: 14px;
-    padding: 16px;
-    background: var(--surface);
-    border: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 10px;
-    box-shadow: 0 24px 72px rgba(27, 27, 27, 0.18);
-    display: grid;
-    gap: 14px;
-    z-index: 20;
-
-    /* hidden by default on mobile */
+  /* Mobile sliding panel */
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.36);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-8px);
-    pointer-events: none;
-    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+    transition: opacity 200ms ease, visibility 200ms ease;
+    z-index: 32;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(420px, 85%);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 40;
+    padding: 12px;
+
+    /* off-canvas */
+    transform: translateX(100%);
+    transition: transform 360ms cubic-bezier(.2,.9,.2,1);
   }
 
   .nav-links.is-open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
+    transform: translateX(0);
   }
 
-  .nav-links a {
+  .nav-links .nav-frame {
+    width: 100%;
+    max-width: 420px;
+    margin: 8px;
+    height: calc(100% - 16px);
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 8px;
+    /* leave room for the in-drawer hamburger button without over-lifting content */
+    padding-top: clamp(32px, 6vw, 44px);
+    padding-right: clamp(20px, 4.5vw, 36px);
+    padding-left: clamp(20px, 4.5vw, 36px);
+    padding-bottom: clamp(20px, 4.5vw, 36px);
+    box-shadow: inset 0 6px 18px rgba(27,27,27,0.04), 0 6px 20px rgba(27,27,27,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 18px;
+    position: relative;
+  }
+
+  .nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: var(--divider-width) solid var(--divider-color);
+  }
+
+  .nav-title {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .nav-close {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: auto;
+    border: 0;
+    background: transparent;
     color: var(--primary);
-    font-size: 12px;
+    font-size: 20px;
+    line-height: 1;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+
+  .nav-close:focus-visible {
+    outline: 2px solid rgba(27,27,27,0.18);
+    outline-offset: 2px;
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin-top: 8px;
+  }
+
+  .nav-items a {
+    display: block;
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    text-align: center;
+    padding: 14px 8px;
+    border-radius: 6px;
+    border-bottom: var(--divider-width) solid var(--divider-color);
+    background: transparent;
+    transition: background 160ms ease, transform 160ms ease;
+  }
+
+  .nav-items a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-items a:hover,
+  .nav-items a:focus {
+    background: rgba(27,27,27,0.03);
+    transform: translateY(-1px);
   }
 
   .hero {
@@ -892,6 +1217,60 @@ h1 {
   }
 }
 
+@media (min-width: 821px) {
+  /* Convert framed mobile panel into neutral inline container on wide screens */
+  .nav-frame {
+    display: flex !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    height: auto !important;
+    margin: 0 !important;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .nav-links {
+    display: flex !important;
+    align-items: center;
+    gap: clamp(24px, 5vw, 72px);
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: row;
+    gap: clamp(24px, 5vw, 72px);
+    margin: 0;
+    align-items: center;
+  }
+
+  .nav-items a {
+    padding: 0;
+    border-bottom: none;
+    color: var(--secondary);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0;
+  }
+
+  .nav-items a:hover {
+    color: var(--primary);
+  }
+
+  .nav-close,
+  .nav-overlay {
+    display: none !important;
+  }
+
+  /* Hide the nav title label on desktop/web view */
+  .nav-title {
+    display: none !important;
+  }
+}
+
 @media (max-width: 820px) and (max-height: 700px) {
   .hero {
     min-height: auto;
@@ -1009,6 +1388,14 @@ h1 {
 
   .about-meta {
     gap: 16px;
+  }
+}
+
+/* Hide carousel arrow buttons on tablet and mobile so users can swipe */
+@media (max-width: 1024px) {
+  .archviz-panel .carousel-btn {
+    display: none !important;
+    /* keep focusable elements removed from layout on small screens */
   }
 }
 
