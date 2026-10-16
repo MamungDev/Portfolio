@@ -184,6 +184,10 @@ a.mark,
   text-transform: uppercase;
 }
 
+.hero-greeting {
+  margin: 0 0 12px;
+}
+
 /* Software skills */
 .software-skills {
   margin: 24px 0 40px;
