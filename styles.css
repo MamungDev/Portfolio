@@ -176,6 +176,69 @@ a.mark,
   max-width: 620px;
 }
 
+/* Place the model beside the artist title and software icons. */
+.hero-details {
+  display: grid;
+  grid-template-columns: minmax(0, max-content) clamp(140px, 15vw, 190px);
+  column-gap: 0;
+  align-items: start;
+}
+
+.hero-details > .kicker,
+.hero-details > .software-skills {
+  grid-column: 1;
+}
+
+.hero-details .skills-icons {
+  flex-wrap: nowrap;
+  gap: clamp(12px, 2.7vw, 40px);
+}
+
+.hero-details .skills-icon {
+  min-width: 0;
+  object-fit: contain;
+}
+
+.hero-model {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  min-width: 0;
+  margin: 12px 0 20px;
+}
+
+.hero-model model-viewer {
+  display: block;
+  width: 100%;
+  height: 172px;
+  background: transparent;
+  cursor: grab;
+  --progress-bar-color: var(--secondary);
+  --progress-bar-height: 2px;
+}
+
+.hero-model model-viewer:active {
+  cursor: grabbing;
+}
+
+.model-status {
+  position: absolute;
+  inset: 0 8px;
+  display: grid;
+  place-content: center;
+  margin: 0;
+  color: var(--secondary);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero-model.is-loaded .model-status {
+  display: none;
+}
+
 .kicker {
   margin: 24px 0 0;
   color: var(--secondary);
@@ -1144,6 +1207,32 @@ h1 {
   .software-skills {
     margin: 18px 0 10px;
     transform: translateY(var(--mobile-skills-offset));
+  }
+
+  .hero-details {
+    grid-template-columns: minmax(0, max-content) 120px;
+    column-gap: 0;
+  }
+
+  .hero-details .software-skills {
+    transform: none;
+  }
+
+  .hero-details .skills-label {
+    text-align: left;
+  }
+
+  .hero-details .skills-icons {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .hero-model {
+    margin-bottom: 0;
+  }
+
+  .hero-model model-viewer {
+    height: 140px;
   }
 
   .skills-label {
